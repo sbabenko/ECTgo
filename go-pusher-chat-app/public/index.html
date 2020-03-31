@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="eng">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport content=" width="device-width, initial-scale=1">
+		<title>Clue-Less</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+		<!--<link rel="stylesheet" href="./css/app.css" >-->
+		<style>
+		body {
+			padding-top: 3.5rem;
+		}
+		h1 {
+			padding-bottom: 9px;
+			margin-bottom: 20px;
+			border-bottom: 1px solid #eee;
+		}
+		.chat {
+			max-width: 80%;
+			margin: 0 auto;
+		}
+		.sidebar {
+			position: fixed;
+			top: 51px;
+			bottom: 0;
+			left: 0;
+			z-index: 1000;
+			padding: 20px 0;
+			overflow-x: hidden;
+			overflow-y: auto;
+			border-right: 1px solid #eee;
+		}
+		.sidebar .nav {
+			margin-bottom: 20px;
+		}
+		.sidebar .nav-item{
+			width: 100%;
+		}
+		.sidebar .nav-item + .nav-item {
+			margin-left: 0;
+		}
+		.sidebar .nav-link {
+			border-radius: 0;
+		}
+		.placeholders {
+			padding-bottom: 3rem;
+		}
+		.placeholder img {
+			padding-top: 1.5rem;
+			padding-bottom: 1.5rem;
+		}
+		tr .sender {
+			font-size: 12px;
+			font-weight: 600;
+		}
+		tr .sender span {
+			color: #676767;
+		}
+		.response {
+			display: none;
+		}
+		</style>
+	</head>
+		<body>
+			<header>
+				<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+					<a class="navbar-brand" href="#">Welcome</a>
+				</nav>
+			</header>
+			<div class="container-fluid">
+				<div class="row" id="mainrow">
+					<nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+						<ul class="nav nav-pills flex-column" id="rooms">
+						</ul>
+					</nav>
+
+				<main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3" id="registerScreen">
+					<h3 style="text-align: center">Type in your details to play</h3>
+					<hr/>
+					<div class="chat" style="margin-bottom:150px">
+						<p>&nbsp;</p>
+						<form id="loginScreenForm">
+							<div class="form-group">
+								<input type="text" class="form-control" id="fullname" placeholder="Name" required>
+							</div>
+							<div class="form-group">
+								<input type="email" class="form-control" id="email" placeholder="Email Address" required>
+							</div>
+							<button type="submit" class="btn btn-block btn-primary">Submit</button>
+						</form>
+					</div>
+				</main>
+
+				<main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3" style="display: none" id="main">
+					<h1>Games</h1>
+					<p>Select a user to play against</p>
+					<p>&nbsp;</p>
+					<div class="chat" style="margin-bottom:150px">
+						<h5 id="room-title"></h5>
+						<p>&nbsp;</p>
+						<div class="response">
+							<form id="replyMessage">
+								<div class="form-group">
+									<input type="text" placeholder="Enter Message" class="form-control" name="message" />
+								</div>
+							</form>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<tbody id="chat-msgs">
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</main>
+					</div>
+					</div>
+
+					<script src="https://js.pusher.com/4.0/pusher.min.js"></script>
+					<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+					<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+					<script type="text/javascript" src="./js/app.js"></script>
+
+		</body>
+</html>
