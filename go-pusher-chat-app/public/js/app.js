@@ -12,7 +12,7 @@
 		currentRoom: undefined,
 		currentChannel: undefined,
 		subscribedChannels: [],
-		subscribedUsers: [],
+		subscribedUsers: []
 	}
 
 	var publicChannel = pusher.subscribe('update');
@@ -31,7 +31,7 @@
 				$('#chat-msgs').prepend(
 					`<tr>
 						<td>
-							<div class="sender">${message.sender} @ <span class="date">${message.createdAT}</span></div>
+							<div class="sender">${message.sender} @ <span class="date">${message.createdAt}</span></div>
 							<div class="message">${message.text}</div>
 						</td>
 					</tr>`
@@ -40,8 +40,8 @@
 		},
 
 		loadChatRoom: evt => {
-			chat.currentRoom = evt.target.dataset.roomID
-			chat.currentChannel = evt.target.dataset.channelID
+			chat.currentRoom = evt.target.dataset.roomId
+			chat.currentChannel = evt.target.dataset.channelId
 			chat.endUserName = evt.target.dataset.userName
 
 			if(chat.currentRoom !== undefined) {
@@ -64,7 +64,7 @@
 				'sender': chat.name,
 				'email': chat.currentRoom,
 				'text': message,
-				'createdAt': creatdAt
+				'createdAt': createdAt
 			});
 
 			$('#chat-msgs').prepend(
@@ -91,14 +91,14 @@
 			chatBody.find('#loginScreenForm input, #loginScreenForm button').attr('disabled', true)
 
 			let validName = (name !== '' && name.length >= 3)
-			let validEmail = (email !== '' && name.length >=5)
+			let validEmail = (email !== '' && email.length >=5)
 
 			if (validName && validEmail){
 				axios.post('/new/user', {name, email}).then(res => {
 					chatBody.find('#registerScreen').css("display", "none");
 					chatBody.find('#main').css("display", "block");
 
-					chat.myChannel = pusher.subscribe('private=' + res.data.email)
+					chat.myChannel = pusher.subscribe('private-' + res.data.email)
 					chat.myChannel.bind('client-' + chat.email, data => {
 						helpers.displayChatMessage(data)
 					})
@@ -120,7 +120,7 @@
 
 			chat.subscribedUsers.forEach((user, index) => {
 				$('#rooms').append(
-				`<li class = "nav-item"><a data-room-id="${user.email}" data-user-name="${user.name}" data-channel-id="${index}" class="nav-link" href="#">${user.name}</a></li>`
+				`<li class="nav-item"><a data-room-id="${user.email}" data-user-name="${user.name}" data-channel-id="${index}" class="nav-link" href="#">${user.name}</a></li>`
 				)	
 			})
 		}
